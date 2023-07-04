@@ -2,45 +2,39 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import { FiHome, FiMail, FiFlag } from 'react-icons/fi'
 import { makeStyles } from '@material-ui/core';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
 import Box from '@mui/material/Box';
-import SvgIcon from '@mui/material/SvgIcon';
 import { Container, Divider } from '@mui/material';
-import {
-    Grid,
-    Card,
-    CardMedia,
-    CardHeader,
-    AppBar,
-    Avatar,
-  } from '@material-ui/core'
-import Carousel from 'react-material-ui-carousel'
+import {CardMedia} from '@material-ui/core'
 
 
 const useStyles = makeStyles((theme) => ({
   main:{
     fontFamily:'Caprasimo',
-    margin:'-10px 0 0 100px',
     width:'100%',
     heigth:'100vh',
     maxWidth: '100%',
-    backgroundColor:'#5673fa',
     position:'absolute',
   },
 
   bg:{
-    height: '100vh',
-  width: '100%',
-  maxWidth: '100%',
+    maxWidth: '100vw',
+    position:'absolute',
+
   },
+
+  bg1:{
+    backgroundSize:'cover',
+    height: '100vh',
+    width: '100vw',
+    maxWidth: '100vw',
+    marginLeft:'-24px',
+    opacity:'0.9',
+    },
 
   menu:{
     fontFamily:'Roboto',
@@ -72,7 +66,6 @@ const useStyles = makeStyles((theme) => ({
     display:'flex',
     color:'white',
     fontFamily:'Roboto',
-    textTransform:'lowercase',
     fontWeight:'bold',
     position: 'relative',
     left: '450px',
@@ -83,7 +76,6 @@ const useStyles = makeStyles((theme) => ({
     display:'flex',
     marginLeft:'60px',
     fontFamily:'Roboto',
-    textTransform:'lowercase',
     fontWeight:'500',
     position: 'relative',
     left: '450px',
@@ -119,7 +111,6 @@ const useStyles = makeStyles((theme) => ({
   central3:{
     fontFamily:'Roboto',
     fontSize:'large',
-    textTransform:'lowercase',
     marginBotton:'150px',
     fontWeight:'400',
     backgroundColor: '#ff7f50',
@@ -129,20 +120,18 @@ const useStyles = makeStyles((theme) => ({
   },
   imgFundo:{
     width:'100%',
-
+    position:'absolute',
+    marginLeft:'0',
   }
-
-  
-
 }))
 
 
-function Header (props) {
+export default function Header (props) {
   const classes = useStyles()
   const { sections, title } = props;
   
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [anchorEz, setAnchorEz] = React.useState(null);
+  const [anchorE, setAnchorE] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
       setAnchorEl(event?.currentTarget);
@@ -158,11 +147,17 @@ function Header (props) {
 
   return (
     <React.Fragment>
-      <div className={classes.bg} style={{ backgroundImage: "url(/casa.jpg)" }}>
-  Hello World
-</div>
+      <Container className={classes.bg}>
+        <Box>
+            <CardMedia
+              className={classes.bg1} style={{ backgroundImage: "url(https://i.pinimg.com/564x/0e/aa/6d/0eaa6d01555f8c9273a04c6f9b337439.jpg)" }}>
+            </CardMedia>
+      </Box>
+      
+      </Container>
 
-      <Container className= {classes.main} >                 
+      <Container className= {classes.main} >  
+                     
         <Toolbar sx={{ borderBottom: 2, borderColor: 'divider' }}>
         <FiMail size={18} color='#ff7f50' />
         <Button size="small" className= {classes.menu} >info@webmail.com</Button>
@@ -182,7 +177,7 @@ function Header (props) {
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
+            
             className= {classes.menu}
           >
             Português
@@ -192,7 +187,7 @@ function Header (props) {
             id="basic-menu"
             anchorEl={anchorEl}
             open={open}
-            onClose={handlefecharIdioma}
+            
             MenuListProps={{
               'aria-labelledby': 'basic-button',
             }}
@@ -224,26 +219,12 @@ function Header (props) {
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
+            
             className = {classes.menuPrincipal}
           >
             Home
           </Button>
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}            
-          >
-            <MenuItem onClick={handleClose}>Home Style 06</MenuItem>
-            <MenuItem onClick={handleClose}>Home Style 02</MenuItem>
-            <Divider />
-            <MenuItem onClick={handleClose}>Home Style 03</MenuItem>
-            <MenuItem onClick={handleClose}>Home Style 04</MenuItem>
-          </Menu>
+          
         </Box>
 
         <Box>
@@ -252,7 +233,7 @@ function Header (props) {
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
+            
             className = {classes.menuPrincipal}
           >
             About
@@ -280,7 +261,7 @@ function Header (props) {
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
+            
             className = {classes.menuPrincipal}
           >
             Shop
@@ -309,7 +290,7 @@ function Header (props) {
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
+            
             className = {classes.menuPrincipal}
           >
             Contact
@@ -326,12 +307,14 @@ function Header (props) {
           
         </Toolbar>
 
-
         
-        
-      </Container>
-
       
+      
+      </Container>
+      
+      
+      
+    </React.Fragment>
     
 
 
@@ -340,52 +323,7 @@ function Header (props) {
 
 
 
-
-
-
-      <Container className= {classes.carousel}>
-        <Container maxWidth="lg" >
-          <Grid className= {classes.grid}>
-                <Grid item xs={8}>
-                    <Box className= {classes.box} >
-                        <Carousel
-                            autoplay={false}
-                            navButtonsAlwaysVisible='true'
-                            navButtonsProps={{          
-                                style: {
-                                  color: 'white',
-                                  padding:'20px',
-                                    margin:'30px',
-                                    borderRadius:'0',
-                                    
-                                }
-                            }} 
-                        >
-                        <Card className={classes.card}>
-                          <CardMedia className= {classes.CardMedia}
-                                image="https://www.tuacasa.com.br/wp-content/uploads/2019/02/fachadas-de-casas-modernas-5.jpg"
-                                
-                                                          
-                                />
-                        </Card>
-
-                        <Card className={classes.card}>
-                        <CardMedia  
-                                className= {classes.CardMedia}
-                                image="https://www.tuacasa.com.br/wp-content/uploads/2019/02/fachadas-de-casas-modernas-11-1.jpg"
-                                
-                            />
-                        </Card>
-                        </Carousel>
-            </Box>
-            </Grid>
-            </Grid>
-        </Container>
       
-      
-      </Container>
-      
-    </React.Fragment>
 
   
   );
@@ -403,4 +341,3 @@ Header.propTypes = {
 
 
 
-export default Header;

@@ -5,11 +5,11 @@ const Default = ({ children }) => {
 
     return (
         <>
-            <Header />
-            
+        <Header />
+        {children}
         </>
     )
 }
 
-export default Default
+export default Default;
 
